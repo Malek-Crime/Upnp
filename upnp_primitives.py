@@ -42,7 +42,7 @@ class UpnpPrimitives:
             print("No UPnP devices found.")
 
     @staticmethod
-    @parsing_decorator(input_args=5, output_args=0)
+    @parsing_decorator(input_args=5, output_args=2)
     def add_port_mapping(inputs, outputs, state_machine):
         """
         Add a port mapping using UPnP, using discovered UPnP device info.
@@ -68,6 +68,8 @@ class UpnpPrimitives:
             result = upnp.addportmapping(int(external_port), protocol, lan_addr, int(internal_port), 'Nopasaran mapping', '')
             if result:
                 print(f"Port mapping added: external port {external_port} -> {lan_addr}:{internal_port} [{protocol}]")
+                state_machine.set_variable_value(outputs[0], external_ip)
+                state_machine.set_variable_value(outputs[1], external_port)
             else:
                 print("Failed to add port mapping.")
         else:
