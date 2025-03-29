@@ -42,12 +42,12 @@ class UpnpPrimitives:
             print("No UPnP devices found.")
 
     @staticmethod
-    @parsing_decorator(input_args=5, output_args=2)
+    @parsing_decorator(input_args=6, output_args=2)
     def add_port_mapping(inputs, outputs, state_machine):
         """
         Add a port mapping using UPnP, using discovered UPnP device info.
         
-        Number of input arguments: 5
+        Number of input arguments: 6
             - UPnP object (from discover)
             - LAN IP address (from discover)
             - External IP address (from discover)
@@ -55,7 +55,7 @@ class UpnpPrimitives:
             - Internal port on the local machine.
             - Protocol (e.g., 'TCP' or 'UDP').
         
-        Number of output arguments: 0
+        Number of output arguments: 2
         """
         upnp = state_machine.get_variable_value(inputs[0])
         lan_addr = state_machine.get_variable_value(inputs[1])
