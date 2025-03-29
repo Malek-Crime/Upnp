@@ -35,7 +35,7 @@ class UpnpPrimitives:
             print("  External IP address:", external_ip)
             
             # Store results in state machine
-            state_machine.set_variable_value(outputs[0], upnp)
+            state_machine.set_variable_value(outputs[0], {"upnp_object": upnp})
             state_machine.set_variable_value(outputs[1], lan_ip)
             state_machine.set_variable_value(outputs[2], external_ip)
         else:
